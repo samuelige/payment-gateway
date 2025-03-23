@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=payment_gateway
+      - POSTGRES_PASSWORD=api_gateway
+      - POSTGRES_DB=payment_gateway
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./docker-volumes/postgres:/var/lib/postgresql
