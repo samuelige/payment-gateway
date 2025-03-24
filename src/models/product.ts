@@ -1,34 +1,65 @@
-import { Model, DataTypes } from 'sequelize';
+// import { Model, DataTypes } from 'sequelize';
+// import { sequelize } from "@app/server/database";
+
+
+// export class Product extends Model {
+//     public id!: number;
+//     public name!: string;
+//     public price!: string;
+//   }
+  
+//   Product.init(
+//     {
+//       id: {
+//         type: DataTypes.INTEGER,
+//         autoIncrement: true,
+//         primaryKey: true,
+//       },
+//       name: {
+//         type: DataTypes.STRING,
+//         allowNull: true,
+//       },
+//       price: {
+//         type: DataTypes.INTEGER,
+//         allowNull: false,
+//       },
+//     },
+//     {
+//       sequelize,
+//       modelName: 'Product',
+//       tableName: 'products',
+//       timestamps: false, 
+//     }
+//   );
+
+import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import { sequelize } from "@app/server/database";
 
+export class Product extends Model<
+  InferAttributes<Product>,
+  InferCreationAttributes<Product>
+> {}
 
-export class Product extends Model {
-    public id!: number;
-    public productId!: string;
-    public price!: number;
-  }
-  
-  Product.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      productId: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
-      price: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+Product.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    {
-      sequelize,
-      modelName: 'Product',
-      tableName: 'products',
-      timestamps: false, 
-    }
-  );
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    modelName: 'Product',
+    tableName: 'products',
+    timestamps: false, 
+  }
+);
